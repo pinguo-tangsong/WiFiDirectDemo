@@ -1,0 +1,100 @@
+//http://my.oschina.net/uboluo/blog/157483
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.9.+'//依赖
+    }
+}
+
+apply plugin: 'android'
+
+dependencies {
+    compile fileTree(dir: 'libs', include: '*.jar')//添加android依赖libs
+}
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "19.0.0"
+    //签名
+    signingConfigs {
+        myConfig {
+            storeFile file("/Users/tangsong/APK/tangsong.jks")
+            storePassword "111111"
+            keyAlias "song314"
+            keyPassword "song1224"
+        }
+    }
+
+    defaultConfig {
+        versionCode 1
+        versionName getVersionName()
+        minSdkVersion 9
+        targetSdkVersion 17
+    }
+
+    //渠道
+    productFlavors {
+        google{
+
+        }
+        tantai{
+
+        }
+    }
+
+    buildTypes{
+        release {
+            signingConfig signingConfigs.myConfig
+//            runProguard true
+//            proguardFile 'proguard.cfg'
+        }
+    }
+
+    sourceSets {
+        main {
+            manifest {
+                srcFile "${rootDir}/src/main/AndroidManifest.xml"
+            }
+            java {
+                srcDir '/src/main/java.'
+            }
+            res {
+                srcDir '/src/main/res'
+            }
+            assets {
+                srcDir '/src/main/assets'
+            }
+            resources {
+                srcDir '/src/main/java'
+            }
+            aidl {
+                srcDir '/src/main/java'
+            }
+        }
+    }
+}
+
+
+tasks.withType(Compile) {
+    options.encoding = "UTF-8"
+}
+//替换AndroidManifest.xml的UMENG_CHANNEL_VALUE字符串为渠道名称
+android.applicationVariants.all{ variant ->
+    variant.processManifest.doLast{
+        copy{
+            from("${buildDir}/manifests"){
+                include "${variant.dirName}/AndroidManifest.xml"
+            }
+            into("${buildDir}/manifests/$variant.name")
+
+            filter{
+                String line -> line.replaceAll("UMENG_CHANNEL_VALUE", "$variant.name")
+            }
+
+            variant.processResources.manifestFile = file("${buildDir}/manifests/${variant.name}/${variant.dirName}/AndroidManifest.xml")
+        }
+    }
+}
