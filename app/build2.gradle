@@ -56,10 +56,10 @@ android {
     sourceSets {
         main {
             manifest {
-                srcFile "${rootDir}/src/main/AndroidManifest.xml"
+                srcFile 'src/main/AndroidManifest.xml'
             }
             java {
-                srcDir '/src/main/java.'
+                srcDir '/src/main/java'
             }
             res {
                 srcDir '/src/main/res'
