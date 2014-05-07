@@ -54,6 +54,7 @@ android {
     }
 
     sourceSets {
+
         main {
             manifest {
                 srcFile 'src/main/AndroidManifest.xml'
