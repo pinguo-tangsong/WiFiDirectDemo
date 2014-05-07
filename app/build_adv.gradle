@@ -21,7 +21,7 @@ android {
     //签名
     signingConfigs {
         myConfig {
-            storeFile file("/Users/tangsong/APK/tangsong.jks")
+            storeFile file("${rootDir}/tangsong.jks")
             storePassword "111111"
             keyAlias "song314"
             keyPassword "song1224"
