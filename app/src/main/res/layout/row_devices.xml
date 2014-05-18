@@ -21,11 +21,13 @@
             android:layout_width="fill_parent"
             android:layout_height="0dip"
             android:layout_weight="1"
+            android:text="@string/text_lint"
             android:gravity="center_vertical" />
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="0dip"
             android:layout_weight="1"
+            android:text="测试lint"
             android:id="@+id/device_details"
             android:singleLine="true"
             android:ellipsize="marquee" />
