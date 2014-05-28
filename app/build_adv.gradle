@@ -68,38 +68,9 @@ android {
         hiapk.setRoot("build-types/hiapk")
         playstore.setRoot('build-types/playstore')
 
-//        manifest.srcFile "${rootDir}/src/main/AndroidManifest.xml"
-//        java.srcDirs = ['/src/main/java']
-//        resources.srcDirs = ['/src/main/java']
-//        aidl.srcDirs = ['/src/main/java']
-//        renderscript.srcDirs = ['/src/main/java']
-//        res.srcDirs = ['/src/main/res']
-//        assets.srcDirs = ['/src/main/assets']
-
         hiapk {
             manifest.srcFile 'hiapk/AndroidManifest.xml'
         }
-
-//        main {
-//            manifest {
-//                srcFile 'src/main/AndroidManifest.xml'
-//            }
-//            java {
-//                srcDir '/src/main/java'
-//            }
-//            res {
-//                srcDir '/src/main/res'
-//            }
-//            assets {
-//                srcDir '/src/main/assets'
-//            }
-//            resources {
-//                srcDir '/src/main/java'
-//            }
-//            aidl {
-//                srcDir '/src/main/java'
-//            }
-//        }
 
     }
 
